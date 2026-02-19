@@ -7,15 +7,42 @@
 <style>
 body {
     font-family: 'Baloo 2', cursive;
-    background: linear-gradient(135deg, #e6f3ee, #d0f0e8);
+    background: linear-gradient(135deg, #c4e6d0, #91cfa3); /* tmavší zelený gradient */
     text-align: center;
     padding: 60px 20px;
 }
 
 h1 {
-    color: #0b3d2e;
+    color: #06482f; /* tmavě zelená pro nadpis */
     font-size: 42px;
     margin-bottom: 40px;
+}
+
+.card {
+    width: 100%;
+    background: #a1d4b2; /* tmavší zelená pro obdélník */
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    padding: 25px 30px;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.front, .back {
+    backface-visibility: hidden;
+    color: #06482f; /* tmavě zelená text */
+    font-size: 22px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back {
+    transform: rotateY(180deg);
+    font-size: 16px;
 }
 
 .cookie {
