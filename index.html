@@ -5,25 +5,48 @@
 <title>Tomíkovi koláčky štěstí 🍪</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
 <style>
+<body>
+<div class="container">
+    <h1>Denní radosti ❤️</h1>
+    <div class="cookie" id="cookie">🍪</div>
+    <div id="info-box">
+        <div class="card" id="card">
+            <div class="front" id="daily-message">Klikni na koláček pro dnešní radost!</div>
+            <div class="back" id="seen-today">Dnes už svůj koláček viděl 😊, přijď zítra!</div>
+        </div>
+    </div>
+</div>
+
+<style>
 body {
     font-family: 'Baloo 2', cursive;
-    background: linear-gradient(135deg, #0a5e3f, #107a50); /* jemnější tmavě zelený gradient */
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0a5e3f, #107a50);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 60px 20px;
+    gap: 20px; /* mezera mezi elementy */
 }
 
 h1 {
     color: #d9f0e6;
     font-size: 42px;
-    margin-bottom: 40px;
+    margin: 0;
 }
 
 .cookie {
     font-size: 120px;
     cursor: pointer;
-    display: inline-block;
-    transition: transform 0.3s;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
 }
 
 .cookie:hover {
@@ -43,8 +66,7 @@ h1 {
 }
 
 #info-box {
-    width: 320px; /* menší karta */
-    margin: 30px auto;
+    width: 300px;
     perspective: 1000px;
 }
 
@@ -53,36 +75,36 @@ h1 {
     background: #d9f0e6;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    padding: 20px 25px; /* lehce menší padding */
+    padding: 20px;
     transition: transform 0.8s, box-shadow 0.3s;
     transform-style: preserve-3d;
     cursor: pointer;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-height: 100px;
 }
 
 .card.flipped {
     transform: rotateY(180deg);
-    box-shadow: 0 0 25px rgba(0, 255, 150, 0.6); /* jemný svit při otočení */
+    box-shadow: 0 0 25px rgba(0, 255, 150, 0.6);
 }
 
 .front, .back {
     backface-visibility: hidden;
     width: 100%;
-    min-height: 100px; /* vyšší, aby text měl prostor */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #06482f;
-    font-size: 20px; /* větší text */
+    font-size: 20px;
 }
 
 .back {
     transform: rotateY(180deg);
 }
+
 </style>
 </head>
 <body>
