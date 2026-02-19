@@ -40,13 +40,15 @@ h1 {
 }
 
 #info-box {
-    width: 320px;
+    width: 90%;       /* Zabere skoro celou šířku obrazovky */
+    max-width: 800px; /* Ale nikdy nebude širší než 800px */
     perspective: 1000px;
+    margin: 0 auto;   /* Horizontální centrování */
 }
 
 .card {
-    width: 100%;
-    background: #b2f0d1; /* jemnější zelená, bílé je moc kontrastní */
+    width: 100%;      /* Vyplní šířku info-boxu */
+    background: #b2f0d1; 
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     padding: 25px;
@@ -58,7 +60,6 @@ h1 {
     justify-content: center;
     align-items: center;
 }
-
 .card.flipped {
     transform: rotateY(180deg);
 }
