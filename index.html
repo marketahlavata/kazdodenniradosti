@@ -272,8 +272,9 @@ document.getElementById("cookie").addEventListener("click", () => {
     const cookie = document.getElementById("cookie");
     const card = document.getElementById("card");
     const front = document.getElementById("daily-message");
+    const back = document.getElementById("seen-today");
 
-    // otočení koláčku místo „skákání“
+    // otočení koláčku
     cookie.classList.toggle("clicked");
 
     if (!messageShown) {
@@ -283,11 +284,19 @@ document.getElementById("cookie").addEventListener("click", () => {
         const day = Math.floor(diff / (1000 * 60 * 60 * 24));
         front.textContent = messages[day % messages.length];
         messageShown = true;
+        showBack = true; // další kliknutí ukáže back
+        card.classList.remove("flipped");
     } else {
-        card.classList.toggle("flipped");
+        // střídání front/back
+        if (showBack) {
+            card.classList.add("flipped"); // zobrazí back text
+        } else {
+            card.classList.remove("flipped"); // zobrazí front text
+        }
+        showBack = !showBack; // přepnout pro další kliknutí
     }
 });
-</script>
+<script>
 
 </body>
 </html>
