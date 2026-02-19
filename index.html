@@ -7,13 +7,13 @@
 <style>
 body {
     font-family: 'Baloo 2', cursive;
-    background: linear-gradient(135deg, #e6f3ee, #d0f0e8); /* jemné zelené pastelky */
+    background: linear-gradient(135deg, #e6f3ee, #d0f0e8);
     text-align: center;
     padding: 60px 20px;
 }
 
 h1 {
-    color: #0b3d2e; /* tmavě zelená */
+    color: #0b3d2e;
     font-size: 42px;
     margin-bottom: 40px;
 }
@@ -42,7 +42,7 @@ h1 {
 }
 
 #info-box {
-    background: #d8f0e6; /* světlá zelená */
+    background: #d8f0e6;
     display: inline-block;
     padding: 25px 30px;
     border-radius: 20px;
@@ -75,6 +75,7 @@ h1 {
 #seen-today {
     font-size: 16px;
     color: #0b3d2e;
+    display: none; /* skryté dokud se nezobrazí po druhém kliknutí */
 }
 </style>
 </head>
@@ -90,7 +91,7 @@ h1 {
 </div>
 
 <script>
-let clickedOnce = false; // sleduje první kliknutí
+    let clickedOnce = false; // sleduje první kliknutí
 
 const messages = [
 "Dnes ti posílám pusu 💋.",
@@ -204,7 +205,6 @@ const messages = [
 
 
 ];
-
 function openCookie() {
     const cookie = document.getElementById("cookie");
     const dailyMsg = document.getElementById("daily-message");
@@ -224,7 +224,6 @@ function openCookie() {
     } else {
         // druhé kliknutí – zobrazíme zprávu, že už viděl
         seenToday.textContent = "Dnes už svůj koláček viděl 😊, přijď zítra!";
-        // přidáme otočení pro efekt
         seenToday.style.display = "inline-block";
         seenToday.style.transform = "rotateY(0deg)";
         seenToday.style.transition = "transform 0.6s";
@@ -232,26 +231,6 @@ function openCookie() {
             seenToday.style.transform = "rotateY(360deg)";
         }, 50);
     }
-}
-
-document.getElementById("cookie").addEventListener("click", openCookie);
-</script>
-
-function openCookie() {
-    const today = new Date();
-    const start = new Date(today.getFullYear(), 0, 0);
-    const diff = today - start;
-    const day = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const message = messages[day % messages.length];
-
-    const cookie = document.getElementById("cookie");
-    cookie.classList.add("clicked");
-
-    const dailyMsg = document.getElementById("daily-message");
-    dailyMsg.textContent = message;
-
-    const seenToday = document.getElementById("seen-today");
-    seenToday.textContent = "Dnes už svůj koláček viděl 😊, přijď zítra!";
 }
 
 document.getElementById("cookie").addEventListener("click", openCookie);
