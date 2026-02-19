@@ -59,41 +59,45 @@ h1 {
 
 #info-box {
     width: 400px;
-    height: auto;
     margin: 30px auto;
-    perspective: 1000px; /* nutné pro 3D efekt */
+    perspective: 1000px; /* 3D efekt pro flip */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* horizontálně doprostřed */
 }
 
 .card {
     width: 100%;
-    background: #d8f0e6;
+    background: #a1d4b2;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     padding: 25px 30px;
     transition: transform 0.8s;
     transform-style: preserve-3d;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertikálně doprostřed */
+    align-items: center; /* horizontálně doprostřed */
     margin-top: 20px;
-}
-
-.card.flipped {
-    transform: rotateY(180deg);
 }
 
 .front, .back {
     backface-visibility: hidden;
-    color: #0b3d2e;
+    color: #06482f;
     font-size: 22px;
     min-height: 60px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: center; /* horizontálně doprostřed */
+    align-items: center;     /* vertikálně doprostřed */
+    text-align: center;      /* zarovnání textu */
 }
 
 .back {
     transform: rotateY(180deg);
     font-size: 16px;
 }
+
 </style>
 </head>
 <body>
