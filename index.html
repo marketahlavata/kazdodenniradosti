@@ -12,7 +12,6 @@ body {
 }
 
 h1 {
-    <div id="countdown" class="countdown"></div>
     color: #d2691e;
 }
 
@@ -35,19 +34,33 @@ h1 {
     margin-top: 40px;
     font-size: 24px;
     color: #a0522d;
-    display: none;
 }
-    .countdown {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+#info {
     font-size: 22px;
-    color: #8b5e3c;       /* jemná hnědá */
+    color: #8b5e3c;
     margin-bottom: 40px;
-    background: #fff3e0;   /* jemný krémový box */
+    background: #fff3e0;
     display: inline-block;
     padding: 10px 20px;
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+</style>
+</head>
+<body>
+
+<h1>Tvoje denní radosti ❤️</h1>
+
+<div id="info">Klikni pro dnešní koláček štěstí 🍪</div>
+
+<div class="cookie" id="cookie">
+    <span class="left">🍪</span>
+    <span class="right">🍪</span>
+</div>
+
+<div class="message" id="message"></div>
+
 
 </style>
 </head>
@@ -178,24 +191,7 @@ const messages = [
 ];
 
 
-// odpočítávání do půlnoci
-function updateCountdown() {
-    const now = new Date();
-    const next = new Date();
-    next.setHours(24,0,0,0); // další půlnoc
-    const diff = next - now;
-
-    const hours = Math.floor(diff / (1000*60*60));
-    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((diff % (1000*60)) / 1000);
-
-    document.getElementById("countdown").textContent = 
-        "Další koláček štěstí bude možné otevřít za: " + 
-        hours + "h " + minutes + "m " + seconds + "s";
-}
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
+// funkce pro otevření koláčku
 function openCookie() {
     const today = new Date();
     const start = new Date(today.getFullYear(), 0, 0);
@@ -208,7 +204,10 @@ function openCookie() {
 
     const msgDiv = document.getElementById("message");
     msgDiv.textContent = message;
-    msgDiv.style.display = "block";
+
+    // aktualizace textu nad koláčkem
+    const infoDiv = document.getElementById("info");
+    infoDiv.textContent = "Dnes už svůj koláček viděl 😊, přijď zítra!";
 }
 
 document.getElementById("cookie").addEventListener("click", openCookie);
