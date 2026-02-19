@@ -7,13 +7,13 @@
 <style>
 body {
     font-family: 'Baloo 2', cursive;
-    background: linear-gradient(135deg, #fff6e5, #ffe5d9);
+    background: linear-gradient(135deg, #e6f3ee, #d0f0e8); /* jemné zelené pastelky */
     text-align: center;
     padding: 60px 20px;
 }
 
 h1 {
-    color: #d2691e;
+    color: #0b3d2e; /* tmavě zelená */
     font-size: 42px;
     margin-bottom: 40px;
 }
@@ -23,6 +23,7 @@ h1 {
     cursor: pointer;
     display: inline-block;
     transition: transform 0.3s;
+    text-shadow: 2px 2px 5px rgba(11,61,46,0.5);
 }
 
 .cookie:hover {
@@ -31,10 +32,17 @@ h1 {
 
 .cookie.clicked {
     transform: rotateY(180deg) scale(1.2);
+    animation: sparkle 0.6s;
+}
+
+@keyframes sparkle {
+    0% { text-shadow: 2px 2px 5px rgba(11,61,46,0.5); }
+    50% { text-shadow: 0 0 20px #0b3d2e; }
+    100% { text-shadow: 2px 2px 5px rgba(11,61,46,0.5); }
 }
 
 #info-box {
-    background: #fff3e0;
+    background: #d8f0e6; /* světlá zelená */
     display: inline-block;
     padding: 25px 30px;
     border-radius: 20px;
@@ -48,17 +56,26 @@ h1 {
     transform: scale(1.05);
 }
 
+#info-box.show {
+    animation: pop 0.5s ease forwards;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.9); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
 #daily-message {
     font-size: 22px;
-    color: #a0522d;
+    color: #0b3d2e;
     margin-bottom: 15px;
 }
 
 #seen-today {
     font-size: 16px;
-    color: #8b5e3c;
+    color: #0b3d2e;
 }
-
 </style>
 </head>
 <body>
