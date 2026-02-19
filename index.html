@@ -197,35 +197,23 @@ const messages = [
 
 
 ];
-function openCookie() {
-    const cookie = document.getElementById("cookie");
-    const dailyMsg = document.getElementById("daily-message");
-    const seenToday = document.getElementById("seen-today");
+document.getElementById("cookie").addEventListener("click", () => {
+    const card = document.getElementById("card");
+    const front = document.getElementById("daily-message");
 
-    if (!clickedOnce) {
-        // první kliknutí – zobrazíme dnešní radost
+    if (!messageShown) {
+        // první kliknutí - zobrazíme dnešní radost
         const today = new Date();
         const start = new Date(today.getFullYear(), 0, 0);
         const diff = today - start;
         const day = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const message = messages[day % messages.length];
-
-        cookie.classList.add("clicked");
-        dailyMsg.textContent = message;
-        clickedOnce = true;
+        front.textContent = messages[day % messages.length];
+        messageShown = true;
     } else {
-        // druhé kliknutí – zobrazíme zprávu, že už viděl
-        seenToday.textContent = "Dnes už svůj koláček viděl 😊, přijď zítra!";
-        seenToday.style.display = "inline-block";
-        seenToday.style.transform = "rotateY(0deg)";
-        seenToday.style.transition = "transform 0.6s";
-        setTimeout(() => {
-            seenToday.style.transform = "rotateY(360deg)";
-        }, 50);
+        // druhé kliknutí - otočíme kartu
+        card.classList.toggle("flipped");
     }
-}
-
-document.getElementById("cookie").addEventListener("click", openCookie);
+});
 </script>
 
 </body>
