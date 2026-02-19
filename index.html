@@ -90,6 +90,8 @@ h1 {
 </div>
 
 <script>
+let clickedOnce = false; // sleduje první kliknutí
+
 const messages = [
 "Dnes ti posílám pusu 💋.",
 "Miluju, když spolu sedíme a smějeme se úplně všemu.",
@@ -203,6 +205,37 @@ const messages = [
 
 ];
 
+function openCookie() {
+    const cookie = document.getElementById("cookie");
+    const dailyMsg = document.getElementById("daily-message");
+    const seenToday = document.getElementById("seen-today");
+
+    if (!clickedOnce) {
+        // první kliknutí – zobrazíme dnešní radost
+        const today = new Date();
+        const start = new Date(today.getFullYear(), 0, 0);
+        const diff = today - start;
+        const day = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const message = messages[day % messages.length];
+
+        cookie.classList.add("clicked");
+        dailyMsg.textContent = message;
+        clickedOnce = true;
+    } else {
+        // druhé kliknutí – zobrazíme zprávu, že už viděl
+        seenToday.textContent = "Dnes už svůj koláček viděl 😊, přijď zítra!";
+        // přidáme otočení pro efekt
+        seenToday.style.display = "inline-block";
+        seenToday.style.transform = "rotateY(0deg)";
+        seenToday.style.transition = "transform 0.6s";
+        setTimeout(() => {
+            seenToday.style.transform = "rotateY(360deg)";
+        }, 50);
+    }
+}
+
+document.getElementById("cookie").addEventListener("click", openCookie);
+</script>
 
 function openCookie() {
     const today = new Date();
