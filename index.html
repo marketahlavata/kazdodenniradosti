@@ -40,10 +40,15 @@ h1 {
 }
 
 #info-box {
-    width: 90%;       /* Zabere skoro celou šířku obrazovky */
-    max-width: 800px; /* Ale nikdy nebude širší než 800px */
+    width: 90%;
+    max-width: 800px;
     perspective: 1000px;
-    margin: 0 auto;   /* Horizontální centrování */
+    margin: 0 auto;
+
+    display: flex;               /* Aktivuje flex */
+    justify-content: center;     /* Horizontální centrování */
+    align-items: center;         /* Vertikální centrování */
+    min-height: 200px;           /* Aby měl box nějakou výšku */
 }
 
 .card {
