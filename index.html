@@ -10,17 +10,30 @@ body {
     text-align: center;
     padding-top: 80px;
 }
+
+h1 {
+    color: #d2691e;
+}
+
 .cookie {
     font-size: 120px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.3s;
+    display: inline-block;
 }
+
 .cookie:hover {
     transform: scale(1.1);
 }
+
+.cookie.clicked {
+    transform: rotateY(180deg) scale(1.2);
+}
+
 .message {
     margin-top: 40px;
     font-size: 24px;
+    color: #a0522d;
     display: none;
 }
 </style>
@@ -28,7 +41,11 @@ body {
 <body>
 
 <h1>Koláček štěstí pro tebe ❤️</h1>
-<div class="cookie" onclick="openCookie()">🍪</div>
+<div class="cookie" id="cookie">
+    <span class="left">🍪</span>
+    <span class="right">🍪</span>
+</div>
+
 <div class="message" id="message"></div>
 
 <script>
@@ -47,4 +64,16 @@ function openCookie() {
     const day = Math.floor(diff / (1000 * 60 * 60 * 24));
     const message = messages[day % messages.length];
 
-    docume
+    const cookie = document.getElementById("cookie");
+    cookie.classList.add("clicked");
+
+    const msgDiv = document.getElementById("message");
+    msgDiv.textContent = message;
+    msgDiv.style.display = "block";
+}
+
+document.getElementById("cookie").addEventListener("click", openCookie);
+</script>
+
+</body>
+</html>
