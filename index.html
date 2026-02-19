@@ -7,42 +7,15 @@
 <style>
 body {
     font-family: 'Baloo 2', cursive;
-    background: linear-gradient(135deg, #c4e6d0, #91cfa3); /* tmavší zelený gradient */
+    background: linear-gradient(135deg, #06482f, #0b613d); /* tmavě zelené pozadí */
     text-align: center;
     padding: 60px 20px;
 }
 
 h1 {
-    color: #06482f; /* tmavě zelená pro nadpis */
+    color: #d9f0e6; /* světlejší, kontrastní nadpis */
     font-size: 42px;
     margin-bottom: 40px;
-}
-
-.card {
-    width: 100%;
-    background: #a1d4b2; /* tmavší zelená pro obdélník */
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    padding: 25px 30px;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.front, .back {
-    backface-visibility: hidden;
-    color: #06482f; /* tmavě zelená text */
-    font-size: 22px;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.back {
-    transform: rotateY(180deg);
-    font-size: 16px;
 }
 
 .cookie {
@@ -50,54 +23,66 @@ h1 {
     cursor: pointer;
     display: inline-block;
     transition: transform 0.3s;
-    text-shadow: 2px 2px 5px rgba(11,61,46,0.5);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
 .cookie:hover {
     transform: scale(1.2) rotate(-5deg);
 }
 
+.cookie.clicked {
+    animation: bounce 0.5s;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-15px) rotate(-10deg); }
+    50% { transform: translateY(0) rotate(5deg); }
+    75% { transform: translateY(-7px) rotate(-5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
 #info-box {
     width: 400px;
     margin: 30px auto;
-    perspective: 1000px; /* 3D efekt pro flip */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* horizontálně doprostřed */
+    perspective: 1000px;
 }
 
 .card {
     width: 100%;
-    background: #a1d4b2;
+    background: #d9f0e6; /* světlý kontrastní obdélník */
     border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     padding: 25px 30px;
     transition: transform 0.8s;
     transform-style: preserve-3d;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* vertikálně doprostřed */
-    align-items: center; /* horizontálně doprostřed */
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
 }
 
 .front, .back {
     backface-visibility: hidden;
-    color: #06482f;
-    font-size: 22px;
-    min-height: 60px;
+    width: 100%;
+    min-height: 80px;
     display: flex;
-    justify-content: center; /* horizontálně doprostřed */
-    align-items: center;     /* vertikálně doprostřed */
-    text-align: center;      /* zarovnání textu */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #06482f;
 }
 
 .back {
     transform: rotateY(180deg);
-    font-size: 16px;
+    font-size: 18px;
 }
-
 </style>
 </head>
 <body>
@@ -229,11 +214,16 @@ const messages = [
 
 ];
 document.getElementById("cookie").addEventListener("click", () => {
+    const cookie = document.getElementById("cookie");
     const card = document.getElementById("card");
     const front = document.getElementById("daily-message");
 
+    // animace koláčku
+    cookie.classList.remove("clicked");
+    void cookie.offsetWidth; // restart animace
+    cookie.classList.add("clicked");
+
     if (!messageShown) {
-        // první kliknutí - zobrazíme dnešní radost
         const today = new Date();
         const start = new Date(today.getFullYear(), 0, 0);
         const diff = today - start;
@@ -241,7 +231,6 @@ document.getElementById("cookie").addEventListener("click", () => {
         front.textContent = messages[day % messages.length];
         messageShown = true;
     } else {
-        // druhé kliknutí - otočíme kartu
         card.classList.toggle("flipped");
     }
 });
