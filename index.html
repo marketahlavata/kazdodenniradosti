@@ -3,62 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <title>Tomíkovi koláčky štěstí 🍪</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background: #fff6e5;
+    font-family: 'Baloo 2', cursive;
+    background: linear-gradient(135deg, #fff6e5, #ffe5d9);
     text-align: center;
-    padding-top: 80px;
+    padding: 60px 20px;
 }
 
 h1 {
     color: #d2691e;
+    font-size: 42px;
+    margin-bottom: 40px;
 }
 
 .cookie {
     font-size: 120px;
     cursor: pointer;
-    transition: transform 0.3s;
     display: inline-block;
+    transition: transform 0.3s;
 }
 
 .cookie:hover {
-    transform: scale(1.1);
+    transform: scale(1.2) rotate(-5deg);
 }
 
 .cookie.clicked {
     transform: rotateY(180deg) scale(1.2);
 }
 
-.message {
-    margin-top: 40px;
-    font-size: 24px;
-    color: #a0522d;
-}
-
-#info {
-    font-size: 22px;
-    color: #8b5e3c;
-    margin-bottom: 40px;
+#info-box {
     background: #fff3e0;
     display: inline-block;
-    padding: 10px 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    padding: 25px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    max-width: 400px;
+    margin-top: 30px;
+    transition: transform 0.2s;
 }
+
+#info-box:hover {
+    transform: scale(1.05);
+}
+
+#daily-message {
+    font-size: 22px;
+    color: #a0522d;
+    margin-bottom: 15px;
+}
+
+#seen-today {
+    font-size: 16px;
+    color: #8b5e3c;
+}
+
 </style>
 </head>
 <body>
 
-<h1>Tvoje denní radosti ❤️</h1>
+<h1>Denní radosti ❤️</h1>
 
-<div id="info">Klikni pro dnešní koláček štěstí 🍪</div>
+<div class="cookie" id="cookie">🍪</div>
 
-<div class="cookie" id="cookie">
-    🍪
+<div id="info-box">
+    <div id="daily-message">Klikni na koláček pro dnešní radost!</div>
+    <div id="seen-today"></div>
 </div>
-
-<div class="message" id="message"></div>
 
 <script>
 const messages = [
@@ -175,7 +187,6 @@ const messages = [
 ];
 
 
-// funkce pro otevření koláčku
 function openCookie() {
     const today = new Date();
     const start = new Date(today.getFullYear(), 0, 0);
@@ -186,12 +197,11 @@ function openCookie() {
     const cookie = document.getElementById("cookie");
     cookie.classList.add("clicked");
 
-    const msgDiv = document.getElementById("message");
-    msgDiv.textContent = message;
+    const dailyMsg = document.getElementById("daily-message");
+    dailyMsg.textContent = message;
 
-    // aktualizace textu nad koláčkem
-    const infoDiv = document.getElementById("info");
-    infoDiv.textContent = "Dnes už svůj koláček viděl 😊, přijď zítra!";
+    const seenToday = document.getElementById("seen-today");
+    seenToday.textContent = "Dnes už svůj koláček viděl 😊, přijď zítra!";
 }
 
 document.getElementById("cookie").addEventListener("click", openCookie);
