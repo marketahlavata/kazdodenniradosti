@@ -5,19 +5,6 @@
 <title>Tomíkovi koláčky štěstí 🍪</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
 <style>
-<body>
-<div class="container">
-    <h1>Denní radosti ❤️</h1>
-    <div class="cookie" id="cookie">🍪</div>
-    <div id="info-box">
-        <div class="card" id="card">
-            <div class="front" id="daily-message">Klikni na koláček pro dnešní radost!</div>
-            <div class="back" id="seen-today">Dnes už svůj koláček viděl 😊, přijď zítra!</div>
-        </div>
-    </div>
-</div>
-
-<style>
 body {
     font-family: 'Baloo 2', cursive;
     margin: 0;
@@ -33,7 +20,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 20px; /* mezera mezi elementy */
+    gap: 30px;
 }
 
 h1 {
@@ -45,49 +32,35 @@ h1 {
 .cookie {
     font-size: 120px;
     cursor: pointer;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-    transition: transform 0.3s;
-}
-
-.cookie:hover {
-    transform: scale(1.2) rotate(-5deg);
+    transition: transform 0.6s;
 }
 
 .cookie.clicked {
-    animation: bounce 0.5s;
-}
-
-@keyframes bounce {
-    0% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-15px) rotate(-10deg); }
-    50% { transform: translateY(0) rotate(5deg); }
-    75% { transform: translateY(-7px) rotate(-5deg); }
-    100% { transform: translateY(0) rotate(0deg); }
+    transform: rotateY(180deg);
 }
 
 #info-box {
-    width: 300px;
+    width: 320px;
     perspective: 1000px;
 }
 
 .card {
     width: 100%;
-    background: #d9f0e6;
+    background: #b2f0d1; /* jemnější zelená, bílé je moc kontrastní */
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    padding: 20px;
-    transition: transform 0.8s, box-shadow 0.3s;
+    padding: 25px;
+    transition: transform 0.8s;
     transform-style: preserve-3d;
     cursor: pointer;
+    min-height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100px;
 }
 
 .card.flipped {
     transform: rotateY(180deg);
-    box-shadow: 0 0 25px rgba(0, 255, 150, 0.6);
 }
 
 .front, .back {
@@ -104,25 +77,23 @@ h1 {
 .back {
     transform: rotateY(180deg);
 }
-
 </style>
 </head>
 <body>
 
-<h1>Denní radosti ❤️</h1>
-
-<div class="cookie" id="cookie">🍪</div>
-
-<div id="info-box">
-    <div class="card" id="card">
-        <div class="front" id="daily-message">Klikni na koláček pro dnešní radost!</div>
-        <div class="back" id="seen-today">Dnes už svůj koláček viděl 😊, přijď zítra!</div>
+<div class="container">
+    <h1>Denní radosti ❤️</h1>
+    <div class="cookie" id="cookie">🍪</div>
+    <div id="info-box">
+        <div class="card" id="card">
+            <div class="front" id="daily-message">Klikni na koláček pro dnešní radost!</div>
+            <div class="back" id="seen-today">Dnes už svůj koláček viděl 😊, přijď zítra!</div>
+        </div>
     </div>
 </div>
 
 <script>
 let messageShown = false;
-
 const messages = [
 "Dnes ti posílám pusu 💋",
 "Miluju, když spolu sedíme a smějeme se úplně všemu",
@@ -288,10 +259,8 @@ document.getElementById("cookie").addEventListener("click", () => {
     const card = document.getElementById("card");
     const front = document.getElementById("daily-message");
 
-    // animace koláčku
-    cookie.classList.remove("clicked");
-    void cookie.offsetWidth; // restart animace
-    cookie.classList.add("clicked");
+    // otočení koláčku místo „skákání“
+    cookie.classList.toggle("clicked");
 
     if (!messageShown) {
         const today = new Date();
