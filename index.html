@@ -48,7 +48,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 200px;  /* můžeš zvýšit, pokud chceš více prostoru */
+    min-height: 200px; /* výšku můžeš upravit dle potřeby */
 }
 
 .card {
@@ -56,7 +56,6 @@ h1 {
     background: #b2f0d1; 
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    padding: 0;              /* odstraníme padding, aby se centrum dobře trefovalo */
     transition: transform 0.8s;
     transform-style: preserve-3d;
     cursor: pointer;
@@ -65,31 +64,27 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;      /* zarovnání vícero řádků textu */
-}
-.front, .back {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-.card.flipped {
-    transform: rotateY(180deg);
+    padding: 0; /* odstraníme padding */
 }
 
 .front, .back {
-    backface-visibility: hidden;
+    position: absolute;   /* nutné pro flip */
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #06482f;
-    font-size: 20px;
+    backface-visibility: hidden;
+    padding: 20px;        /* padding jen uvnitř textu, ne celé karty */
+    box-sizing: border-box;
 }
 
 .back {
     transform: rotateY(180deg);
+}
+
 }
 </style>
 </head>
