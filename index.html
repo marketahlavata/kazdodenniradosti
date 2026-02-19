@@ -48,41 +48,46 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 200px; /* výšku můžeš upravit dle potřeby */
+    min-height: 160px; /* výška boxu */
 }
 
 .card {
     width: 100%;
+    max-width: 800px;
     background: #b2f0d1; 
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
     cursor: pointer;
-    min-height: 120px;
+    perspective: 1000px;
 
+    min-height: 120px;  /* nebo větší dle potřeby */
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 0; /* odstraníme padding */
+    position: relative; /* důležité pro absolute front/back */
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
 }
 
 .front, .back {
-    position: absolute;   /* nutné pro flip */
+    position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    backface-visibility: hidden;
-    padding: 20px;        /* padding jen uvnitř textu, ne celé karty */
+    padding: 20px;
     box-sizing: border-box;
+    backface-visibility: hidden;
+    font-size: 20px;
+    color: #06482f;
 }
 
 .back {
     transform: rotateY(180deg);
+}
+
 }
 
 }
