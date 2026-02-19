@@ -54,7 +54,7 @@ h1 {
 <body>
 
 <h1>Tvoje denní radosti ❤️</h1>
-    <div id="currentTime"></div>
+
 <div id="countdown"></div>
 <div class="cookie" id="cookie">
     <span class="left">🍪</span>
@@ -176,13 +176,7 @@ const messages = [
 
 
 ];
-    // zobrazení aktuálního času
-function updateTime() {
-    const now = new Date();
-    document.getElementById("currentTime").textContent = "Aktuální čas: " + now.toLocaleString("cs-CZ");
-}
-setInterval(updateTime, 1000);
-updateTime();
+
 
 // odpočítávání do půlnoci
 function updateCountdown() {
