@@ -40,7 +40,9 @@ h1 {
 </head>
 <body>
 
-<h1>Koláček štěstí pro tebe ❤️</h1>
+<h1>Tvoje denní radosti ❤️</h1>
+    <div id="currentTime"></div>
+<div id="countdown"></div>
 <div class="cookie" id="cookie">
     <span class="left">🍪</span>
     <span class="right">🍪</span>
@@ -50,11 +52,104 @@ h1 {
 
 <script>
 const messages = [
-  "Miluju tě víc než kávu. A to už je něco ☕❤️",
-  "Dneska na tebe myslím víc než obvykle.",
-  "Jsi to nejlepší, co mě kdy potkalo.",
-  "Tvůj úsměv je moje nejoblíbenější místo.",
-  "Dnes ti posílám virtuální pusu 😘"
+"Dnes ti posílám pusu 💋."
+"Miluju, když spolu sedíme a smějeme se úplně všemu."
+"Na co se dnes těšíš nejvíc 🌞?"
+"Rozbili jsme stůl a postel, ale smáli jsme se tomu oba 😄."
+"Kdy naposledy jsi dělal něco jen pro radost 💛?"
+"Lyžování s tebou je vždycky dobrodružství ⛷️. Pro mě stres..no a pro tebe vlastně taky."
+"Držení se za ruce venku je moje oblíbená maličkost 🤲."
+"Vzpomínáš, co jsme si poprvé šuškali do ucha? 👂💕"
+"Miluju, jak jsi trpělivý a klidný 😌."
+"S kým ses naposledy opravdu smál 😄?"
+"Tvá náruč je moje nejoblíbenější místo k odpočinku 🛋️."
+"Jaký byl tvůj poslední moment smíchu, který tě úplně dostal 😂?"
+"Miluju, když mi držíš ruku venku 🤲."
+"Naše první pusa byla jako malý zázrak :3💋."
+"Co bys chtěl zkusit společně v příštích dnech 🌍?"
+"Hádky v kuchyni s tebou jsou vlastně zábavné."
+"Tomíku, miluju, jak máš tak velké srdce 💛."
+"Díky tobě zvládám i ty nejtěžší chvíle 💪."
+"Dej si chvilku na zamyšlení, co hezkého se ti v posledních dnech stalo 🌸."
+"Poprvé dělání knedlíčků 😋."
+"Vzpomínáš na naši první společnou procházku? Co ti utkvělo nejvíc 🏞️?"
+"Jsi rychlý jako blesk a já tě jen obdivuju, když padám 😅."
+"Dokážeš mě vždycky rozveselit, i když mám špatný den ☀️."
+"Na co si dnes vzpomínáš s úsměvem 💛?"
+"Ležení s tebou v posteli je moje nejoblíbenější místo 🛏️."
+"Sia na kachně – malá vzpomínka, velká radost 🦆."
+"Miluju, jak se směješ, když tě nelechtám a ty si myslíš, že tě lechtám 😄."
+"Co tě dnes inspirovalo být lepším pro ostatní 🌟?"
+"Miluju, jak si starostlivý. Vidím to.."
+"Na společných cestách objevujeme svět i sebe navzájem 🌎."
+"Vzpomínáš na první objetí, které jsme spolu měli 🫂?"
+"Seznamování s tebou bylo začátkem nejlepší kapitoly mého života 📖."
+"Co ti dnes připomnělo naši lásku 💛?"
+"Miluju tvůj smysl pro humor, i když se někdy směju víc já 😏."
+"Procházka v Polepech s tebou byla kouzelná ✨."
+"Tvůj smích je tak nakažlivý, že se směju hned taky 😄."
+"Objímáš mě tak, že se cítím úplně bezpečně 🥰."
+"Co je dnes pro tebe malé štěstí 🌸?"
+"Miluju, když spolu sedíme a smějeme se úplně všemu."
+"Na co se dnes cítíš vděčný/á 🙏?"
+"Lechtání, které není lechtání, a tvůj výraz mě vždycky rozesměje 😄."
+"Jaký byl tvůj poslední moment, kdy jsi cítil opravdu klid 🕊️?"
+"Prater s tebou byl super, strašně mě bavilo kolotočit se spolu 🎡."
+"Co bys chtěl zlepšit jen pro sebe dnes 🌟?"
+"Společné večery s tebou jsou vždycky ty nejlepší..když můžeme být sami sebou 🌙."
+"Miluju, jak se někdy snažíš tvářit seriózně.."
+"Naše společné ranní vstávání,které se nikdy neděje, ale stejně ho miluju."
+"Když spolu sedíme a držíme se za ruce, svět kolem mizí 🌸."
+"Když si hrajeme s našima nožičkama v posteli 😄."
+"Miluju, jak se díváme do očí a nic nemusíme říkat 👀."
+"Poprvé dělání knedlíčků s tebou bylo úplně dokonalé 😋."
+"Seznamování s tebou bylo začátkem nejlepší kapitoly mého života 📖."
+"Naše první Matějskou v Kutné Hoře nikdy nezapomenu 🎠."
+"Běhání po lobby a olizování kytek s tebou bylo hystericky vtipné 😂."
+"S kým bys dnes chtěl strávit chvilku smíchu 😄?"
+"Vzpomínáš na Egypt? 🌞."
+"Když jsi byl se mnou ve Zlíně, všechno bylo hned lepší 🥰."
+"Co ti dnes připomnělo, že svět je krásný 🌎?"
+"Dnes ti posílám objetí na dálku 🤗."
+"Na co se dnes cítíš připravený/á 🌟?"
+"Jaký byl tvůj poslední spontánní úsměv 😄?"
+"Co je dnes pro tebe malé štěstí 🌸?"
+"Kdy naposledy jsi cítil, že všechno je správně 💕?"
+"Co bys chtěl zlepšit jen pro sebe dnes 🌟?"
+"Kdy naposledy jsi dělal něco jen pro sebe 💛?"
+"Dnes ti posílám malý polibek na dobrou náladu 💋."
+"Co tě dnes opravdu rozveselilo 😄?"
+"Na co si vzpomínáš z naší poslední dovolené a směješ se tomu 🌞?"
+"Co bys chtěl zkusit spolu jen tak, pro radost 🌸?"
+
+// zobrazení aktuálního času
+function updateTime() {
+    const now = new Date();
+    document.getElementById("currentTime").textContent = "Aktuální čas: " + now.toLocaleString("cs-CZ");
+}
+setInterval(updateTime, 1000);
+updateTime();
+
+// odpočítávání do půlnoci
+function updateCountdown() {
+    const now = new Date();
+    const next = new Date();
+    next.setHours(24,0,0,0); // další půlnoc
+    const diff = next - now;
+
+    const hours = Math.floor(diff / (1000*60*60));
+    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((diff % (1000*60)) / 1000);
+
+    document.getElementById("countdown").textContent = 
+        "Další koláček štěstí bude možné otevřít za: " + 
+        hours + "h " + minutes + "m " + seconds + "s";
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+
+
 ];
 
 function openCookie() {
