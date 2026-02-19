@@ -30,52 +30,42 @@ h1 {
     transform: scale(1.2) rotate(-5deg);
 }
 
-.cookie.clicked {
-    transform: rotateY(180deg) scale(1.2);
-    animation: sparkle 0.6s;
-}
-
-@keyframes sparkle {
-    0% { text-shadow: 2px 2px 5px rgba(11,61,46,0.5); }
-    50% { text-shadow: 0 0 20px #0b3d2e; }
-    100% { text-shadow: 2px 2px 5px rgba(11,61,46,0.5); }
-}
-
 #info-box {
+    width: 400px;
+    height: auto;
+    margin: 30px auto;
+    perspective: 1000px; /* nutné pro 3D efekt */
+}
+
+.card {
+    width: 100%;
     background: #d8f0e6;
-    display: inline-block;
-    padding: 25px 30px;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    max-width: 400px;
-    margin-top: 30px;
-    transition: transform 0.2s;
+    padding: 25px 30px;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
-#info-box:hover {
-    transform: scale(1.05);
+.card.flipped {
+    transform: rotateY(180deg);
 }
 
-#info-box.show {
-    animation: pop 0.5s ease forwards;
-}
-
-@keyframes pop {
-    0% { transform: scale(0.9); opacity: 0; }
-    50% { transform: scale(1.05); opacity: 1; }
-    100% { transform: scale(1); }
-}
-
-#daily-message {
+.front, .back {
+    backface-visibility: hidden;
+    color: #0b3d2e;
     font-size: 22px;
-    color: #0b3d2e;
-    margin-bottom: 15px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#seen-today {
+.back {
+    transform: rotateY(180deg);
     font-size: 16px;
-    color: #0b3d2e;
-    display: none; /* skryté dokud se nezobrazí po druhém kliknutí */
 }
 </style>
 </head>
@@ -86,12 +76,14 @@ h1 {
 <div class="cookie" id="cookie">🍪</div>
 
 <div id="info-box">
-    <div id="daily-message">Klikni na koláček pro dnešní radost!</div>
-    <div id="seen-today"></div>
+    <div class="card" id="card">
+        <div class="front" id="daily-message">Klikni na koláček pro dnešní radost!</div>
+        <div class="back" id="seen-today">Dnes už svůj koláček viděl 😊, přijď zítra!</div>
+    </div>
 </div>
 
 <script>
-    let clickedOnce = false; // sleduje první kliknutí
+let messageShown = false;
 
 const messages = [
 "Dnes ti posílám pusu 💋.",
