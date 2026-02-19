@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Koláček štěstí 🍪</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #fff6e5;
+    text-align: center;
+    padding-top: 80px;
+}
+.cookie {
+    font-size: 120px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.cookie:hover {
+    transform: scale(1.1);
+}
+.message {
+    margin-top: 40px;
+    font-size: 24px;
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<h1>Koláček štěstí pro tebe ❤️</h1>
+<div class="cookie" onclick="openCookie()">🍪</div>
+<div class="message" id="message"></div>
+
+<script>
+const messages = [
+  "Miluju tě víc než kávu. A to už je něco ☕❤️",
+  "Dneska na tebe myslím víc než obvykle.",
+  "Jsi to nejlepší, co mě kdy potkalo.",
+  "Tvůj úsměv je moje nejoblíbenější místo.",
+  "Dnes ti posílám virtuální pusu 😘"
+];
+
+function openCookie() {
+    const today = new Date();
+    const start = new Date(today.getFullYear(), 0, 0);
+    const diff = today - start;
+    const day = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const message = messages[day % messages.length];
+
+    docume
