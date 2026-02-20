@@ -290,6 +290,7 @@ function createHeart() {
     const heart = document.createElement("span");
     heart.classList.add("heart");
     heart.style.left = Math.random() * 90 + "%";
+    heart.style.top = "80%"; // startuje dole u boxu
     infoBox.appendChild(heart);
     setTimeout(() => infoBox.removeChild(heart), 1500);
 }
